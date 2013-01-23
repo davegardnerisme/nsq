@@ -122,7 +122,7 @@ func (g *GraphOptions) Prefix(metricType string) string {
 	if g.UseStatsdPrefix && metricType == "counter" {
 		return "stats_counts."
 	} else if g.UseStatsdPrefix && metricType == "gauge" {
-		return "gauges."
+		return "stats.gauges."
 	}
 	return ""
 }
@@ -174,7 +174,7 @@ func (t *TopicHostStats) LargeGraph(g *GraphOptions, key string) template.URL {
 func metricType(key string) string {
 	metricType := "counter"
 	switch key {
-	case "connections", "depth":
+	case "connections", "depth", "clients":
 		metricType = "gauge"
 	}
 	return metricType
